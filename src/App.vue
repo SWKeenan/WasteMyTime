@@ -1,28 +1,36 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="titlepage" v-if="titlepage == true">
+      <TitlePage @getSleep="getSleep" />
+    </div>
+    <div class="timewaste" v-if="timewaste == true">
+      <TimeWaste :sleepProp="sleep" />
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TimeWaste from './components/TimeWaste.vue';
+import TitlePage from './components/TitlePage.vue';
 
 export default {
   name: 'App',
+  data() {
+    return {
+      timewaste: false,
+      titlepage: true,
+    };
+  },
   components: {
-    HelloWorld
-  }
-}
+    TimeWaste,
+    TitlePage,
+  },
+  methods: {
+    getSleep(value) {
+      this.sleep = value;
+      this.timewaste = !this.timewaste;
+      this.titlepage = !this.titlepage;
+    },
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

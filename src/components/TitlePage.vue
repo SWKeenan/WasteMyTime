@@ -23,7 +23,6 @@ export default {
   name: "TitlePage",
   data() {
     return {
-      audioOn: false,
       errorMessage: "",
       sleeptemp: "",
       sleep: "",
@@ -38,14 +37,9 @@ export default {
       } else if (this.sleeptemp < 0) {
         this.errorMessage = "You slept a negative number of hours? Oh stop it.";
       } else {
-        if (this.audioOn == false) {
-          this.errorMessage = "";
-          this.audioOn = !this.audioOn;
-          var audio = new Audio(require("../assets/activation.mp3"));
-          audio.play();
-          this.sleep = this.sleeptemp * 60;
-          this.$emit("getSleep", this.sleep);
-        }
+        this.errorMessage = "";
+        this.sleep = this.sleeptemp * 60;
+        this.$emit("getSleep", this.sleep);
       }
     },
   },

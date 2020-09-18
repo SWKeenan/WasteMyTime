@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Navbar />
     <div class="titlepage" v-if="titlepage == true">
       <TitlePage @getSleep="getSleep" />
     </div>
@@ -10,11 +11,12 @@
 </template>
 
 <script>
-import TimeWaste from './components/TimeWaste.vue';
-import TitlePage from './components/TitlePage.vue';
+import Navbar from "./components/Navbar.vue";
+import TimeWaste from "./components/TimeWaste.vue";
+import TitlePage from "./components/TitlePage.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   data() {
     return {
       timewaste: false,
@@ -22,6 +24,7 @@ export default {
     };
   },
   components: {
+    Navbar,
     TimeWaste,
     TitlePage,
   },

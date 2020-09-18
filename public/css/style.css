@@ -4,6 +4,7 @@
   font-family: 'Orbitron', sans-serif;
   background-color: #000000;
   color: #ffffff;
+  box-sizing: border-box;
 }
 
 .headline {
@@ -11,6 +12,39 @@
   text-align: center;
   margin-top: 50px;
   animation: zoomInOut 5s infinite;
+}
+
+li,
+a,
+button {
+  text-decoration: none;
+}
+
+.nav_links {
+  list-style: none;
+}
+
+.nav_links li {
+  display: inline-block;
+  padding: 0px 20px;
+  margin: 0px 5px;
+  border: 1px #ffffff solid;
+}
+
+.nav_links li a {
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+}
+
+.nav_links li a:hover {
+  color: #85929e;
+}
+
+header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 30px 10%;
 }
 
 @keyframes zoomInOut {

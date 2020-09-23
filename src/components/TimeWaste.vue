@@ -53,6 +53,8 @@
       </ul>
     </div>
     <div class="wastedActivities">{{ errorMessage }}</div>
+    <div class="wastedActivities" v-if="!token">{{ notLoggedIn }}</div>
+    <div class="wastedActivities" v-if="token">{{ sentData }}</div>
 
     <div class="wastedActivities">
       <p
@@ -64,6 +66,9 @@
   </div>
 </template>
 <script>
+import axios from "axios";
+import { TokenService } from "../storage/service";
+
 export default {
   name: "TimeWaste",
   props: ["sleepProp"],
@@ -82,6 +87,10 @@ export default {
       testTime: 1440,
       timeSpent: [],
       errorMessage: "",
+      notLoggedIn: "",
+      sentData: "",
+      token: null,
+      tokenUsername: null,
       sleep: this.sleepProp,
     };
   },
@@ -163,8 +172,12 @@ export default {
           this.timeLength -= this.time;
         } else if (this.testTime == 0) {
           this.errorMessage = "You used up all your time!";
+          this.notLoggedIn =
+            "This will not be saved because you are not logged in.";
+          this.sentData = "This data has been saved in Previous Days.";
           this.barTotal -= this.time;
           this.timeSpent.push(this.object);
+          this.postData();
           if (!this.suggestedActivites.includes(this.activity)) {
             this.suggestedActivites.push(this.activity);
           }
@@ -176,6 +189,28 @@ export default {
           }
           console.log(this.timeSpent);
         }
+      }
+    },
+    postData() {
+      console.log(this.timeSpent);
+      this.token = TokenService.getToken();
+      console.log(this.token);
+      this.tokenUsername = TokenService.getUser();
+      console.log(this.tokenUsername);
+      if (this.token && this.tokenUsername) {
+        axios({
+          method: "POST",
+          url: "http://localhost:8000/timewaste/",
+          headers: {
+            Authorization: "Token " + this.token,
+          },
+          data: {
+            day: this.timeSpent,
+            user: this.tokenUsername,
+          },
+        })
+          .then((response) => console.log(response.data))
+          .catch((error) => console.log(error.data));
       }
     },
   },

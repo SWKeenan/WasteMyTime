@@ -12,7 +12,7 @@
           placeholder="How many hours did you sleep last night?"
           v-model="sleeptemp"
         />
-        <input type="submit" class="inputClass" @click="beginTW" />
+        <input type="submit" class="inputClass" />
       </form>
     </div>
     <div class="wastedActivities">{{ errorMessage }}</div>
@@ -26,6 +26,7 @@ export default {
       errorMessage: "",
       sleeptemp: "",
       sleep: "",
+      timewaste: [],
     };
   },
   methods: {

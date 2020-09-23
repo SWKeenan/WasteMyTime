@@ -58,10 +58,6 @@ export default {
         axios({
           method: "POST",
           url: "http://localhost:8000/rest-auth/registration/",
-          auth: {
-            username: "shane",
-            password: "bluehouse",
-          },
           data: {
             username: this.username,
             email: this.email,

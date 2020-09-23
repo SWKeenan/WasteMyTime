@@ -73,7 +73,7 @@ export default {
     getData() {
       axios({
         method: "GET",
-        url: "http://localhost:8000/timewaste/",
+        url: "https://waste-my-time-back.herokuapp.com/timewaste/",
         auth: {
           username: "shane",
           password: "bluehouse",

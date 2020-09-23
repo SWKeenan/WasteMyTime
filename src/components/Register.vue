@@ -57,7 +57,8 @@ export default {
       } else {
         axios({
           method: "POST",
-          url: "http://localhost:8000/rest-auth/registration/",
+          url:
+            "https://waste-my-time-back.herokuapp.com/rest-auth/registration/",
           data: {
             username: this.username,
             email: this.email,

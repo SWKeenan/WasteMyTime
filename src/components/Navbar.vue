@@ -84,7 +84,7 @@ export default {
     getLogout() {
       axios({
         method: "POST",
-        url: "http://localhost:8000/rest-auth/logout/",
+        url: "https://waste-my-time-back.herokuapp.com/rest-auth/logout/",
       })
         .then((response) => {
           console.log(response.data);

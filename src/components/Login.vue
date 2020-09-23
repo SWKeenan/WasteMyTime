@@ -44,7 +44,7 @@ export default {
       } else {
         axios({
           method: "POST",
-          url: "http://localhost:8000/rest-auth/login/",
+          url: "https://waste-my-time-back.herokuapp.com/rest-auth/login/",
           data: {
             username: this.username,
             password: this.password,
@@ -55,7 +55,7 @@ export default {
             localStorage.setItem("user-token", response.data.key);
             axios({
               method: "GET",
-              url: "http://localhost:8000/rest-auth/user/",
+              url: "https://waste-my-time-back.herokuapp.com/rest-auth/user/",
               headers: {
                 Authorization: "Token " + this.token,
               },

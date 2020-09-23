@@ -200,7 +200,7 @@ export default {
       if (this.token && this.tokenUsername) {
         axios({
           method: "POST",
-          url: "http://localhost:8000/timewaste/",
+          url: "https://waste-my-time-back.herokuapp.com/timewaste/",
           headers: {
             Authorization: "Token " + this.token,
           },

@@ -3,19 +3,23 @@
     <div class="headline">
       <h3>Waste My Time</h3>
     </div>
-    <p class="textTop">There are 1440 minutes in a day. 24 hours. How do you waste them?</p>
+    <p class="textTop">
+      There are 1440 minutes in a day. 24 hours. How do you waste them?
+    </p>
     <br />
     <p v-if="emptySwitch" class="errorMsg">{{ emptyMessage }}</p>
     <div class="textTop" v-for="t in filteredArray" :key="t.id">
-      <div v-if="t.user==tokenUsername">
+      <div v-if="t.user == tokenUsername">
         <p>User: {{ t.username }}</p>
         <p>Date: {{ t.date }}</p>
         <div v-for="day in t.day" :key="day.id">
           <p>
-            Time: {{ day.time }} minutes -
-            Color: {{ day.color.charAt(0).toUpperCase() + day.color.slice(1)}} -
-            Value: {{ day.value.charAt(0).toUpperCase() + day.value.slice(1) }} -
-            Activity: {{ day.activity.charAt(0).toUpperCase() + day.activity.slice(1) }}
+            Time: {{ day.time }} minutes - Color:
+            {{ day.color.charAt(0).toUpperCase() + day.color.slice(1) }} -
+            Value:
+            {{ day.value.charAt(0).toUpperCase() + day.value.slice(1) }} -
+            Activity:
+            {{ day.activity.charAt(0).toUpperCase() + day.activity.slice(1) }}
           </p>
         </div>
         <br />
@@ -25,10 +29,10 @@
             :key="day.id"
             class="percentage"
             :style="{
-          width: day.time * 0.5 + 'px',
-          left: day.timelength * 0.5 + 'px',
-          'background-color': day.color,
-        }"
+              width: day.time * 0.5 + 'px',
+              left: day.timelength * 0.5 + 'px',
+              'background-color': day.color,
+            }"
           ></div>
         </div>
         <br />
@@ -74,10 +78,6 @@ export default {
       axios({
         method: "GET",
         url: "https://waste-my-time-back.herokuapp.com/timewaste/",
-        auth: {
-          username: "shane",
-          password: "bluehouse",
-        },
       })
         .then((response) => {
           this.timewaste.push(response.data);

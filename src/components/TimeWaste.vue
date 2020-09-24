@@ -3,7 +3,9 @@
     <div class="headline">
       <h3>Waste My Time</h3>
     </div>
-    <p class="textTop">There are 1440 minutes in a day. 24 hours. How do you waste them?</p>
+    <p class="textTop">
+      There are 1440 minutes in a day. 24 hours. How do you waste them?
+    </p>
     <div class="timeWasteBar">
       <div
         v-for="t in timeSpent"
@@ -16,7 +18,10 @@
         }"
       ></div>
     </div>
-    <p class="barTotal">{{ barTotal }} minutes remaining</p>
+    <p class="barTotal">
+      {{ barTotal }} minutes remaining
+      <span class="moveRight">{{ timeDisplay(timeLength) }}</span>
+    </p>
     <div class="wastedActivitiesSubmit">
       <form action="post" v-on:submit.prevent="submitActivity">
         <input
@@ -49,7 +54,9 @@
           v-for="filteredActivity in filteredActivities"
           :key="filteredActivity.id"
           @click="setState(filteredActivity)"
-        >{{ filteredActivity }}</li>
+        >
+          {{ filteredActivity }}
+        </li>
       </ul>
     </div>
     <div class="wastedActivities">{{ errorMessage }}</div>
@@ -61,7 +68,9 @@
         v-for="t in timeSpent.slice().reverse()"
         :key="t.id"
         :style="{ color: t.color }"
-      >{{ t.activity }} - {{ t.value }} - {{ t.time }}</p>
+      >
+        {{ t.activity }} - {{ t.value }} - {{ t.time }}
+      </p>
     </div>
   </div>
 </template>
@@ -212,6 +221,20 @@ export default {
           .then((response) => console.log(response.data))
           .catch((error) => console.log(error.data));
       }
+    },
+    timeDisplay(value) {
+      let num = value;
+      let hours = num / 60;
+      let rhours = Math.floor(hours);
+      let minutes = (hours - rhours) * 60;
+      let rminutes = Math.round(minutes);
+      if (rhours < 10) {
+        rhours = "0" + rhours;
+      }
+      if (rminutes < 10) {
+        rminutes = "0" + rminutes;
+      }
+      return "Time: " + rhours + ":" + rminutes;
     },
   },
 };

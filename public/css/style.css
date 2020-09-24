@@ -12,6 +12,10 @@
   margin-top: 20vh;
 }
 
+.moveRight {
+  margin-left: 45vw;
+}
+
 .headline {
   height: 20vh;
   text-align: center;

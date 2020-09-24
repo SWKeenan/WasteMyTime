@@ -3,13 +3,15 @@
     <div class="headline">
       <h3>Waste My Time</h3>
     </div>
-    <p class="textTop">There are 1440 minutes in a day. 24 hours. How do you waste them?</p>
+    <p class="textTop">
+      There are 1440 minutes in a day. 24 hours. How do you waste them?
+    </p>
     <div class="sleepQuestion">
       <form action="post" v-on:submit.prevent="beginTW">
         <input
           type="number"
           class="sleepClass"
-          placeholder="How many hours did you sleep last night?"
+          placeholder="How many hours did you sleep last night? (after midnight)"
           v-model="sleeptemp"
         />
         <input type="submit" class="inputClass" />

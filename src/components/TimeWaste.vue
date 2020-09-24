@@ -131,13 +131,8 @@ export default {
       this.time = this.sleep;
       this.testTime -= parseInt(this.time);
       this.timeLength += parseInt(this.time);
-      console.log("time: " + this.time);
-      console.log("testTime: " + this.testTime);
-      console.log("timeLength: " + this.timeLength);
-      console.log("barTotal: " + this.barTotal);
       this.barTotal -= this.time;
       this.timeSpent.push(this.object);
-      console.log(this.timeSpent);
       this.time = "";
     },
     submitActivity() {
@@ -171,10 +166,6 @@ export default {
         };
         this.testTime -= parseInt(this.time);
         this.timeLength += parseInt(this.time);
-        console.log("time: " + this.time);
-        console.log("testTime: " + this.testTime);
-        console.log("timeLength: " + this.timeLength);
-        console.log("barTotal: " + this.barTotal);
         if (this.testTime < 0) {
           this.errorMessage = "You don't have enough time left!";
           this.testTime = this.barTotal;
@@ -196,16 +187,12 @@ export default {
           if (!this.suggestedActivites.includes(this.activity)) {
             this.suggestedActivites.push(this.activity);
           }
-          console.log(this.timeSpent);
         }
       }
     },
     postData() {
-      console.log(this.timeSpent);
       this.token = TokenService.getToken();
-      console.log(this.token);
       this.tokenUsername = TokenService.getUser();
-      console.log(this.tokenUsername);
       if (this.token && this.tokenUsername) {
         axios({
           method: "POST",
